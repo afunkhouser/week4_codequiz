@@ -6,7 +6,7 @@ var correctMessage = document.querySelector("#correct-message");
 var timeEl = document.querySelector("#time");
 var nameEl = document.querySelector("#name");
 var saveButton = document.querySelector("#save-button");
-
+var secondsLeft = 60;
 var savedName = localStorage.getItem("savedName")
 
 
@@ -55,9 +55,11 @@ function renderQuestion(){
       // resets the variable to allow users to restart the test
       pos = 0;
       correct = 0;
+      secondsLeft = 0;
+      
       // stops rest of renderQuestion function running when test is completed
       return false;
-    
+      
     }
     get("test_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
 
@@ -104,7 +106,7 @@ function renderQuestion(){
 
   function setTime() {
     // Sets interval in variable
-    var secondsLeft = 60;
+  
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timeEl.textContent = secondsLeft + " seconds left!";
